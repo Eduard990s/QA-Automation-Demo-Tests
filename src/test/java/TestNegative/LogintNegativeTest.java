@@ -2,6 +2,7 @@ package TestNegative;
 
 
 import Pages.LoginPage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -15,7 +16,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginTestsNegative {
+public class LogintNegativeTest {
     private WebDriver driver;
     private LoginPage loginPage;
 
@@ -26,6 +27,7 @@ public class LoginTestsNegative {
         driver.manage().window().maximize();
         loginPage.goToLoginPage();
     }
+
     @Test
     public void unsuccessfulLogin() {
         loginPage.enterUsername("admin2");
@@ -39,6 +41,13 @@ public class LoginTestsNegative {
         assertTrue(alertText.contains("Warning: No match for E-Mail Address and/or Password"), "Popup text should contain Warning: No match for E-Mail Address and/or Password");
 
 
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 }

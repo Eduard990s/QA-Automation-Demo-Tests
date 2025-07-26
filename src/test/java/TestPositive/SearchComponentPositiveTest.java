@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SearchComponentTestsPositive {
+public class SearchComponentPositiveTest {
     private WebDriver driver;
 
     private final String Base_URL = "http://auto.pragmatic.bg/";

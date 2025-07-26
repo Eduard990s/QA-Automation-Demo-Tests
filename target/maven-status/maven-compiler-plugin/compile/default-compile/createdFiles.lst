@@ -1,1 +1,3 @@
-bg\pragmatic\lecture14bmi\BmiCalcPage.class
+Pages\HomePage.class
+Pages\LoginPage.class
+Components\SearchComponent.class

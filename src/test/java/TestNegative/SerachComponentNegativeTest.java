@@ -14,7 +14,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class SerachComponentTestNegative {
+public class SerachComponentNegativeTest {
 
     private WebDriver driver;
 
