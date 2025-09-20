@@ -1,3 +1,8 @@
+TestPositive\LoginPositiveTest.class
+TestApi\ApiGetTests.class
+TestApi\CreateAccountTest.class
+TestApi\AccountApiTest.class
+TestApi\ApiPostTests.class
+TestNegative\LogintNegativeTest.class
 TestNegative\SerachComponentNegativeTest.class
 TestPositive\SearchComponentPositiveTest.class
-TestNegative\LogintNegativeTest.class

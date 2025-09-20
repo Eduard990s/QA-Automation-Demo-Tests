@@ -1,6 +1,6 @@
+package TestApi;
 
-package TestAPI;
-
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -15,8 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * To test this functionality, modify the information below as needed.
  */
 
+@Epic("API Tests")
+@Feature("Account Creation")
 public class CreateAccountTest {
-
 
     private final String FIRST_NAME = "John";
     private final String LAST_NAME = "Doe";
@@ -24,6 +25,9 @@ public class CreateAccountTest {
     private final String PASSWORD = "Test12345";
 
     @Test
+    @Story("Create new account with valid data")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify that a new account can be created via the account/register API endpoint")
     public void createNewAccountPositive() {
         String requestBody = String.format(
                 "{\n" +
@@ -34,19 +38,29 @@ public class CreateAccountTest {
                         "  \"confirm\": \"%s\",\n" +
                         "  \"agree\": true\n" +
                         "}",
-                FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PASSWORD); // Modify these values to test API communication
-        Response response = RestAssured
-                .given()
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post("https://auto.pragmatic.bg/index.php?route=account/register&language=en-gb")
-                .then()
-                .extract().response();
+                FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PASSWORD);
 
-        System.out.println(response.asString());
-        assertEquals(200, response.statusCode(), "Account creation failed!");
-        System.out.println("Response body: " + response.getBody().asString());
+        Response response = Allure.step("Send POST request to create new account", () ->
+                RestAssured
+                        .given()
+                        .contentType(ContentType.JSON)
+                        .body(requestBody)
+                        .when()
+                        .post("https://auto.pragmatic.bg/index.php?route=account/register&language=en-gb")
+                        .then()
+                        .extract().response()
+        );
+
+        Allure.step("Verify response status code is 200", () ->
+                assertEquals(200, response.statusCode(), "Account creation failed!")
+        );
+
+        Allure.step("Attach response body for reference", () -> {
+            String responseBody = response.getBody().asString();
+            System.out.println(responseBody);
+            Allure.addAttachment("Create Account Response", "application/json", responseBody, ".json");
+        });
+
         System.out.println("Status code: " + response.getStatusCode());
     }
 }

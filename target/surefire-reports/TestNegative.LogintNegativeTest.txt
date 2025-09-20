@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestNegative.LogintNegativeTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.298 s - in TestNegative.LogintNegativeTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.546 s - in TestNegative.LogintNegativeTest
